@@ -2,7 +2,7 @@ import { ButtonComponent } from '@/components';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { KeyboardAvoidingView, Platform, TouchableOpacity } from 'react-native';
-import { View, Input, XStack, H1, Paragraph, YStack } from 'tamagui';
+import { View, Text, Input, XStack, H1, Paragraph, YStack } from 'tamagui';
 
 const SignUpPage = () => {
   const [countryCode, setCountryCode] = useState('+91');
@@ -27,7 +27,7 @@ const SignUpPage = () => {
             Enter your phone number. We will send you a confirmation code there.
           </Paragraph>
         </YStack>
-        <XStack marginVertical="$8" gap="$2.5">
+        <XStack marginVertical="$7" gap="$2.5">
           <Input placeholder="Country code" value={countryCode} size="$5" />
           <Input
             size="$5"
@@ -40,9 +40,12 @@ const SignUpPage = () => {
         </XStack>
 
         <TouchableOpacity onPress={() => router.replace('/login')}>
-          <Paragraph fontSize="$6" color="$green10Dark">
-            Already have an account? Log in
-          </Paragraph>
+          <XStack alignItems="center" gap="$2">
+            <Paragraph fontSize="$6">Already have an account?</Paragraph>
+            <Text fontSize="$6" color="$green10Dark">
+              Log in
+            </Text>
+          </XStack>
         </TouchableOpacity>
         <View flex={1} />
         <View marginBottom="$5">
