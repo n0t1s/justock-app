@@ -1,6 +1,6 @@
-import { Link, Tabs } from 'expo-router'
-import { Pressable } from 'react-native'
-import { Text } from 'tamagui'
+import { Link, Tabs } from 'expo-router';
+import { Pressable } from 'react-native';
+import { Text } from 'tamagui';
 
 export default function TabLayout() {
   return (
@@ -15,11 +15,9 @@ export default function TabLayout() {
           title: 'Tab One',
           tabBarIcon: ({ color }) => <Text>Hello!</Text>,
           headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                <Text>Hello!</Text>
-              </Pressable>
-            </Link>
+            <Pressable>
+              <Text>Hello!</Text>
+            </Pressable>
           ),
         }}
       />
@@ -31,5 +29,5 @@ export default function TabLayout() {
         }}
       />
     </Tabs>
-  )
+  );
 }

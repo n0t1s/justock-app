@@ -1,10 +1,11 @@
+import React from 'react';
 import { useAssets } from 'expo-asset';
 import { ResizeMode, Video } from 'expo-av';
 import { useRouter } from 'expo-router';
-import { TouchableOpacity, StyleSheet } from 'react-native';
 import { View, Text, XStack } from 'tamagui';
+import { ButtonComponent } from '@/components';
 
-const Page = () => {
+const LandingPage = () => {
   const [assets] = useAssets([require('@/assets/videos/intro.mp4')]);
   const router = useRouter();
   return (
@@ -20,7 +21,12 @@ const Page = () => {
         />
       )}
       <View style={{ marginTop: 80, padding: 20 }}>
-        <Text fontSize="$9" fontWeight="900" textTransform="uppercase">
+        <Text
+          fontSize="$9"
+          fontWeight="900"
+          textTransform="uppercase"
+          color="$white2"
+        >
           Elevate Your Financial Game with Justock!
         </Text>
       </View>
@@ -30,34 +36,24 @@ const Page = () => {
         marginBottom="$11"
         paddingHorizontal="$5"
       >
-        <TouchableOpacity
+        <ButtonComponent
+          theme="alt1"
           onPress={() => router.push('/login')}
-          style={[styles.buttons, { backgroundColor: '#141518' }]}
+          flex={1}
         >
-          <Text fontSize="$7">Log in</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
+          Log in
+        </ButtonComponent>
+        <ButtonComponent
+          theme="alt1"
           onPress={() => router.push('/signup')}
-          style={[styles.buttons, { backgroundColor: 'white' }]}
+          flex={1}
+          themeInverse
         >
-          <Text fontSize="$7" color="$color1">
-            Sign up
-          </Text>
-        </TouchableOpacity>
+          Sign up
+        </ButtonComponent>
       </XStack>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  buttons: {
-    flex: 1,
-    padding: 10,
-    height: 60,
-    borderRadius: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
-
-export default Page;
+export default LandingPage;
