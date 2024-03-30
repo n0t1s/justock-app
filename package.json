@@ -21,6 +21,8 @@
     "@tamagui/metro-plugin": "^1.93.2",
     "babel-preset-expo": "^10.0.1",
     "expo": "~50.0.6",
+    "expo-asset": "~9.0.2",
+    "expo-av": "~13.10.5",
     "expo-dev-client": "~3.3.11",
     "expo-font": "~11.10.2",
     "expo-linking": "~6.2.1",

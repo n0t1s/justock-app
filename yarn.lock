@@ -7004,6 +7004,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"expo-av@npm:~13.10.5":
+  version: 13.10.5
+  resolution: "expo-av@npm:13.10.5"
+  peerDependencies:
+    expo: "*"
+  checksum: 50513f4a9fcf85224c3991d046cf71b7b2503801c3bef978b3eeec3463953cf38a84e2c5ef5b43f260ebba9ad9fda7e691d3d3ac14cc7eff49f963b3246b24b9
+  languageName: node
+  linkType: hard
+
 "expo-constants@npm:~15.4.0, expo-constants@npm:~15.4.3":
   version: 15.4.3
   resolution: "expo-constants@npm:15.4.3"
@@ -8797,6 +8806,8 @@ __metadata:
     "@types/react": "npm:~18.2.14"
     babel-preset-expo: "npm:^10.0.1"
     expo: "npm:~50.0.6"
+    expo-asset: "npm:~9.0.2"
+    expo-av: "npm:~13.10.5"
     expo-dev-client: "npm:~3.3.11"
     expo-font: "npm:~11.10.2"
     expo-linking: "npm:~6.2.1"
