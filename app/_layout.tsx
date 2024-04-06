@@ -17,7 +17,6 @@ import { config } from "../tamagui.config";
 const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 import * as SecureStore from "expo-secure-store";
 
-// Cache the Clerk JWT
 const tokenCache = {
   async getToken(key: string) {
     try {
@@ -46,6 +45,7 @@ function InitialLayout() {
   });
   const colorScheme = useColorScheme() as "light" | "dark";
   const router = useRouter();
+  const { isLoaded, isSignedIn } = useAuth();
 
   useEffect(() => {
     if (interLoaded || interError) {
@@ -56,6 +56,10 @@ function InitialLayout() {
   if (!interLoaded && !interError) {
     return null;
   }
+
+  useEffect(() => {
+    console.log("isSignedIn", isSignedIn);
+  }, [isSignedIn]);
 
   return (
     <TamaguiProvider config={config} defaultTheme={colorScheme as any}>
@@ -111,6 +115,24 @@ function InitialLayout() {
           <Stack.Screen
             name="help"
             options={{ title: "Help", presentation: "modal" }}
+          />
+          <Stack.Screen
+            name="verify/[phone]"
+            options={{
+              title: "",
+              headerBackTitle: "",
+              headerShadowVisible: false,
+              headerStyle: { backgroundColor: Colors[colorScheme].background },
+              headerLeft: () => (
+                <TouchableOpacity onPress={router.back}>
+                  <Ionicons
+                    name="arrow-back"
+                    size={34}
+                    color={Colors[colorScheme].IconDefault}
+                  />
+                </TouchableOpacity>
+              ),
+            }}
           />
         </Stack>
       </ThemeProvider>
