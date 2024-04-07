@@ -1,3 +1,5 @@
-import ButtonComponent from './ButtonComponent';
+import ButtonComponent from "./ButtonComponent";
+import ButtonRounded from "./ButtonRounded";
+import Dropdown from "./Dropdown";
 
-export { ButtonComponent };
+export { ButtonComponent, ButtonRounded, Dropdown };
