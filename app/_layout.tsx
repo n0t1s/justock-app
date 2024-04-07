@@ -7,11 +7,15 @@ import {
   ThemeProvider,
 } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { Link, SplashScreen, Stack, useRouter } from "expo-router";
+import { Link, SplashScreen, Stack, useRouter, useSegments } from "expo-router";
 import React, { useEffect } from "react";
-import { TouchableOpacity, useColorScheme } from "react-native";
+import {
+  ActivityIndicator,
+  TouchableOpacity,
+  useColorScheme,
+} from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { TamaguiProvider } from "tamagui";
+import { TamaguiProvider, View } from "tamagui";
 import "../tamagui-web.css";
 import { config } from "../tamagui.config";
 const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
@@ -39,27 +43,45 @@ export { ErrorBoundary } from "expo-router";
 SplashScreen.preventAutoHideAsync();
 
 function InitialLayout() {
-  const [interLoaded, interError] = useFonts({
+  const [loaded, error] = useFonts({
     Inter: require("@tamagui/font-inter/otf/Inter-Medium.otf"),
     InterBold: require("@tamagui/font-inter/otf/Inter-Bold.otf"),
   });
   const colorScheme = useColorScheme() as "light" | "dark";
   const router = useRouter();
   const { isLoaded, isSignedIn } = useAuth();
+  const segments = useSegments();
 
   useEffect(() => {
-    if (interLoaded || interError) {
+    if (error) throw error;
+  }, [error]);
+
+  useEffect(() => {
+    if (loaded) {
       SplashScreen.hideAsync();
     }
-  }, [interLoaded, interError]);
-
-  if (!interLoaded && !interError) {
-    return null;
-  }
+  }, [loaded]);
 
   useEffect(() => {
-    console.log("isSignedIn", isSignedIn);
+    if (!isLoaded) return;
+    const inAuthGroup = segments[0] === "(authenticated)";
+
+    if (isSignedIn && !inAuthGroup) {
+      router.replace("/(authenticated)/(tabs)/home");
+    } else if (!isSignedIn) {
+      router.replace("/");
+    }
   }, [isSignedIn]);
+
+  if (!loaded || !isLoaded) {
+    return (
+      <TamaguiProvider config={config} defaultTheme={colorScheme as any}>
+        <View flex={1} justifyContent="center" alignItems="center">
+          <ActivityIndicator size="large" />
+        </View>
+      </TamaguiProvider>
+    );
+  }
 
   return (
     <TamaguiProvider config={config} defaultTheme={colorScheme as any}>
@@ -133,6 +155,10 @@ function InitialLayout() {
                 </TouchableOpacity>
               ),
             }}
+          />
+          <Stack.Screen
+            name="(authenticated)/(tabs)"
+            options={{ headerShown: false }}
           />
         </Stack>
       </ThemeProvider>
