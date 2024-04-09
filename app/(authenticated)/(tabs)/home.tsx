@@ -2,12 +2,21 @@ import React from "react";
 import { Button, ScrollView, Text, XStack, YStack } from "tamagui";
 import { useHeaderHeight } from "@react-navigation/elements";
 import { ButtonRounded, Dropdown } from "@/components";
+import { useBalanceStore } from "@/store/balanceStore";
 
 export default function HomeScreen() {
   const headerHeight = useHeaderHeight();
+  const { balance, runTransaction, transactions, clearTransactions } =
+    useBalanceStore();
 
-  const onAddMoney = () => {};
-  const clearTransactions = () => {};
+  const onAddMoney = () => {
+    runTransaction({
+      id: Math.random().toString(),
+      amount: Math.floor(Math.random() * 1000) * (Math.random() > 0.5 ? 1 : -1),
+      date: new Date(),
+      title: "Added money",
+    });
+  };
 
   return (
     <ScrollView
@@ -18,7 +27,7 @@ export default function HomeScreen() {
       <YStack margin="$6" alignItems="center">
         <XStack alignItems="flex-end" justifyContent="center" gap="$3">
           <Text fontSize={50} fontWeight="bold">
-            1234
+            {balance()}
           </Text>
           <Text fontSize={20} fontWeight="500">
             €
