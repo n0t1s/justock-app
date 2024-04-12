@@ -7979,6 +7979,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"expo-blur@npm:~12.9.2":
+  version: 12.9.2
+  resolution: "expo-blur@npm:12.9.2"
+  peerDependencies:
+    expo: "*"
+  checksum: df5a893da1f0c647506fa08459b3fe3cdd9c0078cf8b06ef8313e3e36659abd449905f5edb25d2cb1987a7ab5570e4fec992c09d042a61f01ddd08ab6a587be8
+  languageName: node
+  linkType: hard
+
 "expo-constants@npm:~15.4.0, expo-constants@npm:~15.4.3":
   version: 15.4.3
   resolution: "expo-constants@npm:15.4.3"
@@ -9828,6 +9837,7 @@ __metadata:
     expo-asset: "npm:~9.0.2"
     expo-auth-session: "npm:~5.4.0"
     expo-av: "npm:~13.10.5"
+    expo-blur: "npm:~12.9.2"
     expo-crypto: "npm:~12.8.1"
     expo-dev-client: "npm:~3.3.11"
     expo-font: "npm:~11.10.3"

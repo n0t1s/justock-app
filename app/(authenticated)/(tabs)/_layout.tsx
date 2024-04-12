@@ -6,12 +6,32 @@ import {
   MaterialIcons,
 } from "@expo/vector-icons";
 import { colorTokens } from "@tamagui/themes";
+import { BlurView } from "expo-blur";
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: colorTokens.light.green.green9,
+        tabBarBackground: () => (
+          <BlurView
+            intensity={70}
+            style={{
+              flex: 1,
+              backgroundColor: "rgba(0,0,0,0.05)",
+            }}
+          />
+        ),
+        tabBarStyle: {
+          backgroundColor: "transparent",
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          elevation: 0,
+          borderTopWidth: 0,
+          paddingTop: 7,
+        },
       }}
     >
       <Tabs.Screen
