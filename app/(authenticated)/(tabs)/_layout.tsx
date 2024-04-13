@@ -7,6 +7,7 @@ import {
 } from "@expo/vector-icons";
 import { colorTokens } from "@tamagui/themes";
 import { BlurView } from "expo-blur";
+import { CustomHeader } from "@/components";
 
 export default function TabLayout() {
   return (
@@ -41,6 +42,8 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <Octicons name="home" size={size} color={color} />
           ),
+          header: () => <CustomHeader />,
+          headerTransparent: true,
         }}
       />
       <Tabs.Screen
