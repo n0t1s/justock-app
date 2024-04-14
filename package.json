@@ -21,7 +21,7 @@
     "@tamagui/config": "^1.93.2",
     "@tamagui/metro-plugin": "^1.93.2",
     "babel-preset-expo": "^10.0.1",
-    "expo": "~50.0.14",
+    "expo": "~50.0.15",
     "expo-application": "~5.8.3",
     "expo-asset": "~9.0.2",
     "expo-auth-session": "~5.4.0",

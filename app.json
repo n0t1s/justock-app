@@ -28,11 +28,16 @@
     },
     "web": {
       "bundler": "metro",
-      "output": "static",
+      "output": "server",
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router",
+      [
+        "expo-router",
+        {
+          "origin": "https://rishabh1s.vercel.app/"
+        }
+      ],
       "expo-font",
       "expo-secure-store"
     ],

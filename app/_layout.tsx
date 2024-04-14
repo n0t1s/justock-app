@@ -74,13 +74,7 @@ function InitialLayout() {
   }, [isSignedIn]);
 
   if (!loaded || !isLoaded) {
-    return (
-      <TamaguiProvider config={config} defaultTheme={colorScheme as any}>
-        <View flex={1} justifyContent="center" alignItems="center">
-          <ActivityIndicator size="large" />
-        </View>
-      </TamaguiProvider>
-    );
+    return null;
   }
 
   return (

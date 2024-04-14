@@ -8144,12 +8144,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expo-modules-core@npm:1.11.12":
-  version: 1.11.12
-  resolution: "expo-modules-core@npm:1.11.12"
+"expo-modules-core@npm:1.11.13":
+  version: 1.11.13
+  resolution: "expo-modules-core@npm:1.11.13"
   dependencies:
     invariant: "npm:^2.2.4"
-  checksum: 9c0dd3e6e9e6a218e6f41142e46e2a2e7c2a65937fdd061c8cac90f8bbf933088b9abb2cdf97f6833b9483911ebeca5ec8a5779c6933420291eedeaafbeb44bb
+  checksum: 47bb33281d0a5025ab25ecdfdfda1ae8c8daa159fd90b2a6ef8505a8fd361ec6b0d68d576320e20bd2abb715eb3541b36e1f31fcfe2182091b30f1ee800895c7
   languageName: node
   linkType: hard
 
@@ -8246,9 +8246,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expo@npm:~50.0.14":
-  version: 50.0.14
-  resolution: "expo@npm:50.0.14"
+"expo@npm:~50.0.15":
+  version: 50.0.15
+  resolution: "expo@npm:50.0.15"
   dependencies:
     "@babel/runtime": "npm:^7.20.0"
     "@expo/cli": "npm:0.17.8"
@@ -8262,12 +8262,12 @@ __metadata:
     expo-font: "npm:~11.10.3"
     expo-keep-awake: "npm:~12.8.2"
     expo-modules-autolinking: "npm:1.10.3"
-    expo-modules-core: "npm:1.11.12"
+    expo-modules-core: "npm:1.11.13"
     fbemitter: "npm:^3.0.0"
     whatwg-url-without-unicode: "npm:8.0.0-3"
   bin:
     expo: bin/cli
-  checksum: 51cc118dad81dd8021406530e30690801d823ccd32d614f451f742c7ddb61310bc2414b4a6f95b95b7990df7c9d7c408656db9f2428737b40962b3ace99e4ccd
+  checksum: 9351b58c372a330485e2cef1643155f7b62c7cb8ab1fb65781198f0b6c8a924837c0379f55418e4b01875fb851491a281075f06b048624a76befbaa65a1d0f30
   languageName: node
   linkType: hard
 
@@ -9832,7 +9832,7 @@ __metadata:
     "@tamagui/metro-plugin": "npm:^1.93.2"
     "@types/react": "npm:~18.2.14"
     babel-preset-expo: "npm:^10.0.1"
-    expo: "npm:~50.0.14"
+    expo: "npm:~50.0.15"
     expo-application: "npm:~5.8.3"
     expo-asset: "npm:~9.0.2"
     expo-auth-session: "npm:~5.4.0"
