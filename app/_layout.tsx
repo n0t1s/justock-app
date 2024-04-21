@@ -9,17 +9,15 @@ import {
 import { useFonts } from "expo-font";
 import { Link, SplashScreen, Stack, useRouter, useSegments } from "expo-router";
 import React, { useEffect } from "react";
-import {
-  ActivityIndicator,
-  TouchableOpacity,
-  useColorScheme,
-} from "react-native";
+import { TouchableOpacity, useColorScheme } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { TamaguiProvider, View } from "tamagui";
 import "../tamagui-web.css";
 import { config } from "../tamagui.config";
 const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 import * as SecureStore from "expo-secure-store";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+const queryClient = new QueryClient();
 
 const tokenCache = {
   async getToken(key: string) {
@@ -166,9 +164,11 @@ export default function RootLayoutNav() {
       publishableKey={CLERK_PUBLISHABLE_KEY!}
       tokenCache={tokenCache}
     >
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <InitialLayout />
-      </GestureHandlerRootView>
+      <QueryClientProvider client={queryClient}>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <InitialLayout />
+        </GestureHandlerRootView>
+      </QueryClientProvider>
     </ClerkProvider>
   );
 }

@@ -4,6 +4,7 @@ import {
   AntDesign,
   FontAwesome6,
   MaterialIcons,
+  Fontisto,
 } from "@expo/vector-icons";
 import { colorTokens } from "@tamagui/themes";
 import { BlurView } from "expo-blur";
@@ -44,6 +45,15 @@ export default function TabLayout() {
           ),
           header: () => <CustomHeader />,
           headerTransparent: true,
+        }}
+      />
+      <Tabs.Screen
+        name="crypto"
+        options={{
+          title: "Crypto",
+          tabBarIcon: ({ color, size }) => (
+            <Fontisto name="bitcoin" size={size} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
