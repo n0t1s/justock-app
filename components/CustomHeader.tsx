@@ -1,6 +1,6 @@
 import React from "react";
 import Colors from "@/constants/Colors";
-import { useUser } from "@clerk/clerk-expo";
+import { useAuth, useUser } from "@clerk/clerk-expo";
 import { Ionicons } from "@expo/vector-icons";
 import { BlurView } from "expo-blur";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -10,6 +10,7 @@ import { useColorScheme } from "react-native";
 const CustomHeader = () => {
   const { top } = useSafeAreaInsets();
   const { user } = useUser();
+  const { signOut } = useAuth();
   const colorScheme = useColorScheme() as "light" | "dark";
 
   return (
@@ -20,7 +21,7 @@ const CustomHeader = () => {
         justifyContent="space-between"
         alignItems="center"
       >
-        <Avatar circular>
+        <Avatar circular onPress={async () => await signOut()}>
           <Avatar.Image accessibilityLabel="Cam" src={user?.imageUrl} />
           <Avatar.Fallback backgroundColor="$red10" />
         </Avatar>

@@ -1,4 +1,4 @@
-import { ButtonComponent } from "@/components";
+import { ButtonComponent, OAuthSection } from "@/components";
 import { useSignUp } from "@clerk/clerk-expo";
 import { useRouter } from "expo-router";
 import { useState } from "react";
@@ -63,8 +63,7 @@ const SignUpPage = () => {
             </Text>
           </XStack>
         </TouchableOpacity>
-        <View flex={1} />
-        <View marginBottom="$5">
+        <View marginTop="$7" marginBottom="$5">
           <ButtonComponent
             onPress={onSignup}
             backgroundColor="$green10Dark"
@@ -75,6 +74,7 @@ const SignUpPage = () => {
             Sign up
           </ButtonComponent>
         </View>
+        <OAuthSection />
       </View>
     </KeyboardAvoidingView>
   );
