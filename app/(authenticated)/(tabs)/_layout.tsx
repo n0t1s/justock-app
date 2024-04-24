@@ -54,6 +54,8 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <Fontisto name="bitcoin" size={size} color={color} />
           ),
+          header: () => <CustomHeader />,
+          headerTransparent: true,
         }}
       />
       <Tabs.Screen

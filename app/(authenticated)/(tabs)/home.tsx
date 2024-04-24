@@ -32,6 +32,7 @@ export default function HomeScreen() {
       contentContainerStyle={{
         paddingTop: headerHeight,
       }}
+      showsVerticalScrollIndicator={false}
     >
       <YStack margin="$10" alignItems="center">
         <XStack alignItems="flex-end" justifyContent="center" gap="$3">
