@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { Stack, useLocalSearchParams } from "expo-router";
 import { useHeaderHeight } from "@react-navigation/elements";
-import { Text, View, XStack, Image, Button, YStack, ThemeName } from "tamagui";
-import { SectionList } from "react-native";
+import {
+  Text,
+  View,
+  XStack,
+  Image,
+  Button,
+  YStack,
+  ThemeName,
+  ScrollView,
+} from "tamagui";
+import {
+  SectionList,
+  TouchableOpacity,
+  StyleSheet,
+  useColorScheme,
+} from "react-native";
 import { useQuery } from "@tanstack/react-query";
 import { Ionicons } from "@expo/vector-icons";
+import Colors from "@/constants/Colors";
+const categories = ["Overview", "News", "Orders", "Transactions"];
 
 interface CTAProps {
   text: string;
@@ -29,6 +45,8 @@ const CTA: React.FC<CTAProps> = ({ text, icon, backgroundColor, theme }) => {
 const DetailsPage = () => {
   const { id } = useLocalSearchParams();
   const headerHeight = useHeaderHeight();
+  const [activeIndex, setActiveIndex] = useState(0);
+  const colorScheme = useColorScheme() as "light" | "dark";
 
   const { data } = useQuery({
     queryKey: ["info", id],
@@ -46,6 +64,44 @@ const DetailsPage = () => {
         keyExtractor={(i) => i.title}
         contentInsetAdjustmentBehavior="automatic"
         sections={[{ data: [{ title: "Chart" }] }]}
+        renderSectionHeader={() => (
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{
+              alignItems: "center",
+              width: "100%",
+              justifyContent: "space-between",
+              padding: "$3.5",
+              backgroundColor: Colors[colorScheme].background,
+              borderBottomColor: "$color8",
+              borderBottomWidth: StyleSheet.hairlineWidth,
+            }}
+          >
+            {categories.map((item, index) => (
+              <TouchableOpacity
+                key={index}
+                onPress={() => setActiveIndex(index)}
+                style={{
+                  padding: 10,
+                  paddingHorizontal: 14,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor:
+                    activeIndex === index
+                      ? Colors[colorScheme === "dark" ? "light" : "dark"]
+                          .background
+                      : Colors[colorScheme].background,
+                  borderRadius: 20,
+                }}
+              >
+                <Text color={activeIndex === index ? "$color1" : "$color10"}>
+                  {item}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        )}
         ListHeaderComponent={() => (
           <YStack marginVertical="$1.5" marginHorizontal="$4">
             <XStack justifyContent="space-between" alignItems="center">
