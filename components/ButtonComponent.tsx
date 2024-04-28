@@ -1,5 +1,5 @@
-import { Button, ThemeName } from 'tamagui';
-import React from 'react';
+import { Button, ThemeName } from "tamagui";
+import React from "react";
 
 interface ButtonProps {
   onPress: () => void;
