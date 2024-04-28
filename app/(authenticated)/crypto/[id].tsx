@@ -21,6 +21,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "@/constants/Colors";
 const categories = ["Overview", "News", "Orders", "Transactions"];
+import { LineChart } from "react-native-gifted-charts";
+import { Currency } from "@/interfaces/crypto";
 
 interface CTAProps {
   text: string;
@@ -56,6 +58,14 @@ const DetailsPage = () => {
     },
   });
 
+  const getHourlyChange = (data: Currency) =>
+    data?.quote?.EUR?.percent_change_1h;
+
+  const { data: tickers } = useQuery({
+    queryKey: ["tickers"],
+    queryFn: async () => fetch(`/api/tickers`).then((res) => res.json()),
+  });
+
   return (
     <>
       <Stack.Screen options={{ title: data?.name }} />
@@ -64,6 +74,7 @@ const DetailsPage = () => {
         keyExtractor={(i) => i.title}
         contentInsetAdjustmentBehavior="automatic"
         sections={[{ data: [{ title: "Chart" }] }]}
+        showsVerticalScrollIndicator={false}
         renderSectionHeader={() => (
           <ScrollView
             horizontal
@@ -126,18 +137,42 @@ const DetailsPage = () => {
             </XStack>
           </YStack>
         )}
-        renderItem={({ item }) => (
-          <View
-            margin="$4"
-            padding="$3"
-            borderRadius="$4"
-            gap={28}
-            backgroundColor="$color2"
-          >
-            <Text fontSize={20} fontWeight="bold" color="$color11">
-              Overview
-            </Text>
-            <Text color="$color10">{data?.description}</Text>
+        renderItem={() => (
+          <View margin="$4">
+            <View height={600}>
+              <LineChart
+                areaChart
+                height={600}
+                data={tickers}
+                hideDataPoints
+                spacing={10}
+                color={getHourlyChange(data) > 0 ? "#00ff83" : "#F2555A"}
+                startFillColor={
+                  getHourlyChange(data) > 0
+                    ? "rgba(20,105,81,0.3)"
+                    : "rgba(105,20,31,0.3)"
+                }
+                endFillColor="rgba(0,25,10,0.5)"
+                startOpacity={0.9}
+                endOpacity={0.2}
+                initialSpacing={0}
+                yAxisThickness={0}
+                xAxisThickness={0}
+                rulesThickness={0}
+                yAxisLabelWidth={0}
+              />
+            </View>
+            <View
+              padding="$3"
+              borderRadius="$4"
+              gap={28}
+              backgroundColor="$color2"
+            >
+              <Text fontSize={20} fontWeight="bold" color="$color11">
+                Overview
+              </Text>
+              <Text color="$color10">{data?.description}</Text>
+            </View>
           </View>
         )}
       ></SectionList>
